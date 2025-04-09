@@ -4,6 +4,7 @@ const sequelize = require("./config/database");
 require("dotenv").config();
 
 const authRoutes = require("./routes/authRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 
 const app = express();
 
@@ -19,6 +20,7 @@ sequelize
 
 // Routes
 app.use("/api", authRoutes); // Use the auth routes under the /api path
+app.use("/admin", adminRoutes);
 
 // Default route
 app.get("/", (req, res) => res.send("Appointment System API"));

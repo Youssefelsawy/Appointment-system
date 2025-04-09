@@ -8,8 +8,6 @@ const {
   createGuestAppointment,
   getDoctorAppointments,
   updateAppointmentStatus,
-  getAllAppointments,
-  createAdminAppointment,
 } = require("../controllers/AppointmentController");
 
 const router = express.Router();
@@ -37,20 +35,6 @@ router.put(
   authenticate,
   checkRole("doctor"),
   updateAppointmentStatus
-);
-
-// Admin routes
-router.get(
-  "/admin/appointments",
-  authenticate,
-  checkRole("admin"),
-  getAllAppointments
-);
-router.post(
-  "/admin/appointments",
-  authenticate,
-  checkRole("admin"),
-  createAdminAppointment
 );
 
 module.exports = router;

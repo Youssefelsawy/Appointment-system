@@ -33,6 +33,7 @@ exports.register = [
         return res.status(400).json({ error: "Email already in use" });
       }
 
+      // Create the user
       const user = await User.create({
         name,
         email,
@@ -41,6 +42,14 @@ exports.register = [
         isGuest: false,
       });
 
+      // Generate JWT token
+      const token = jwt.sign(
+        { id: user.id, role: user.role },
+        process.env.JWT_SECRET,
+        { expiresIn: process.env.JWT_EXPIRATION || "1h" }
+      );
+
+      // Respond with the user and token
       res.status(201).json({
         message: "Patient registered successfully",
         token,
