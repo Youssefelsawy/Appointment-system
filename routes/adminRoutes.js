@@ -10,7 +10,7 @@ const {
   getAllAppointments,
   deleteAppointment,
   createAdminAppointment,
-} = require("../controllers/AdminController");
+} = require("../controllers/adminController");
 
 const router = express.Router();
 

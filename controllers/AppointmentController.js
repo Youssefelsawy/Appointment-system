@@ -76,6 +76,19 @@ exports.getPatientAppointments = async (req, res) => {
   }
 };
 
+// Patient: View Doctors
+exports.getAllDoctors = async (req, res) => {
+  try {
+    const doctors = await User.findAll({
+      where: { role: "doctor" },
+      attributes: ["id", "name", "email"],
+    });
+    res.json(doctors);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch doctors" });
+  }
+};
+
 // Guest: Register an appointment
 exports.createGuestAppointment = async (req, res) => {
   const { email, date, timeSlot, doctorId } = req.body;
